@@ -1,0 +1,17 @@
+/*
+    给一个k，返回第k行的杨辉三角
+    类似动态规划由于只要返回某一行，所以只要用一维维护即可
+*/
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int>res(rowIndex+1,0);
+        res[0] = 1;
+        for(int i = 1 ; i <= rowIndex ; i++){
+            for(int j =  i ; j >0 ; j--){
+                res[j] = res[j]+res[j-1];
+            }
+        }
+        return res;
+    }
+};
