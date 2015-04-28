@@ -1,0 +1,19 @@
+/*
+    题意：给一个整数数组，每一个元素出现三次，只有一个元素出现一次，找出那个数（target数）
+    解法：用位运算做，统计整个数组每一位1的个数，然后对3取模，因为如果在第i位target数为0，
+    那么bit%3就为0，否则为1，对bit进行左移操作，然后直接累加结果。
+*/
+class Solution {
+public:
+    int singleNumber(int A[], int n) {
+        int bit,res = 0;
+        for(int i = 0 ; i < 32 ; i++){
+            bit = 0;
+            for(int j = 0 ; j < n ; j++){
+                bit+=(A[j]>>i)&1;
+            }
+            res|=(bit%3)<<i;
+        }
+        return res;
+    }
+};
